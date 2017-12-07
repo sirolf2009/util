@@ -114,7 +114,7 @@ public @interface GSonDTO {
                         } else {
                           String _xifexpression_3 = null;
                           TypeReference _type_6 = it.getType();
-                          TypeReference _newTypeReference_3 = context.newTypeReference(Boolean.class);
+                          TypeReference _newTypeReference_3 = context.newTypeReference(Number.class);
                           boolean _equals_3 = Objects.equal(_type_6, _newTypeReference_3);
                           if (_equals_3) {
                             StringConcatenation _builder_3 = new StringConcatenation();
@@ -126,133 +126,112 @@ public @interface GSonDTO {
                             _builder_3.append(" = object.get(\"");
                             String _simpleName_7 = it.getSimpleName();
                             _builder_3.append(_simpleName_7);
-                            _builder_3.append("\").getAsBoolean();");
+                            _builder_3.append("\").getAsNumber();");
                             _xifexpression_3 = _builder_3.toString();
                           } else {
                             String _xifexpression_4 = null;
-                            TypeReference _type_8 = it.getType();
-                            TypeReference _newTypeReference_4 = context.newTypeReference(Byte.class);
-                            boolean _equals_4 = Objects.equal(_type_8, _newTypeReference_4);
-                            if (_equals_4) {
+                            if ((Objects.equal(it.getType(), context.newTypeReference(Boolean.class)) || Objects.equal(it.getType(), context.newTypeReference(boolean.class)))) {
                               StringConcatenation _builder_4 = new StringConcatenation();
-                              TypeReference _type_9 = it.getType();
-                              _builder_4.append(_type_9);
+                              TypeReference _type_8 = it.getType();
+                              _builder_4.append(_type_8);
                               _builder_4.append(" ");
                               String _simpleName_8 = it.getSimpleName();
                               _builder_4.append(_simpleName_8);
                               _builder_4.append(" = object.get(\"");
                               String _simpleName_9 = it.getSimpleName();
                               _builder_4.append(_simpleName_9);
-                              _builder_4.append("\").getAsByte();");
+                              _builder_4.append("\").getAsBoolean();");
                               _xifexpression_4 = _builder_4.toString();
                             } else {
                               String _xifexpression_5 = null;
-                              TypeReference _type_10 = it.getType();
-                              TypeReference _newTypeReference_5 = context.newTypeReference(Character.class);
-                              boolean _equals_5 = Objects.equal(_type_10, _newTypeReference_5);
-                              if (_equals_5) {
+                              if ((Objects.equal(it.getType(), context.newTypeReference(Byte.class)) || Objects.equal(it.getType(), context.newTypeReference(byte.class)))) {
                                 StringConcatenation _builder_5 = new StringConcatenation();
-                                TypeReference _type_11 = it.getType();
-                                _builder_5.append(_type_11);
+                                TypeReference _type_9 = it.getType();
+                                _builder_5.append(_type_9);
                                 _builder_5.append(" ");
                                 String _simpleName_10 = it.getSimpleName();
                                 _builder_5.append(_simpleName_10);
                                 _builder_5.append(" = object.get(\"");
                                 String _simpleName_11 = it.getSimpleName();
                                 _builder_5.append(_simpleName_11);
-                                _builder_5.append("\").getAsCharacter();");
+                                _builder_5.append("\").getAsByte();");
                                 _xifexpression_5 = _builder_5.toString();
                               } else {
                                 String _xifexpression_6 = null;
-                                TypeReference _type_12 = it.getType();
-                                TypeReference _newTypeReference_6 = context.newTypeReference(Double.class);
-                                boolean _equals_6 = Objects.equal(_type_12, _newTypeReference_6);
-                                if (_equals_6) {
+                                if ((Objects.equal(it.getType(), context.newTypeReference(Character.class)) || Objects.equal(it.getType(), context.newTypeReference(char.class)))) {
                                   StringConcatenation _builder_6 = new StringConcatenation();
-                                  TypeReference _type_13 = it.getType();
-                                  _builder_6.append(_type_13);
+                                  TypeReference _type_10 = it.getType();
+                                  _builder_6.append(_type_10);
                                   _builder_6.append(" ");
                                   String _simpleName_12 = it.getSimpleName();
                                   _builder_6.append(_simpleName_12);
                                   _builder_6.append(" = object.get(\"");
                                   String _simpleName_13 = it.getSimpleName();
                                   _builder_6.append(_simpleName_13);
-                                  _builder_6.append("\").getAsDouble();");
+                                  _builder_6.append("\").getAsCharacter();");
                                   _xifexpression_6 = _builder_6.toString();
                                 } else {
                                   String _xifexpression_7 = null;
-                                  TypeReference _type_14 = it.getType();
-                                  TypeReference _newTypeReference_7 = context.newTypeReference(Float.class);
-                                  boolean _equals_7 = Objects.equal(_type_14, _newTypeReference_7);
-                                  if (_equals_7) {
+                                  if ((Objects.equal(it.getType(), context.newTypeReference(Double.class)) || Objects.equal(it.getType(), context.newTypeReference(double.class)))) {
                                     StringConcatenation _builder_7 = new StringConcatenation();
-                                    TypeReference _type_15 = it.getType();
-                                    _builder_7.append(_type_15);
+                                    TypeReference _type_11 = it.getType();
+                                    _builder_7.append(_type_11);
                                     _builder_7.append(" ");
                                     String _simpleName_14 = it.getSimpleName();
                                     _builder_7.append(_simpleName_14);
                                     _builder_7.append(" = object.get(\"");
                                     String _simpleName_15 = it.getSimpleName();
                                     _builder_7.append(_simpleName_15);
-                                    _builder_7.append("\").getAsFloat();");
+                                    _builder_7.append("\").getAsDouble();");
                                     _xifexpression_7 = _builder_7.toString();
                                   } else {
                                     String _xifexpression_8 = null;
-                                    if ((Objects.equal(it.getType(), context.newTypeReference(Integer.class)) || Objects.equal(it.getType(), context.newTypeReference(int.class)))) {
+                                    if ((Objects.equal(it.getType(), context.newTypeReference(Float.class)) || Objects.equal(it.getType(), context.newTypeReference(float.class)))) {
                                       StringConcatenation _builder_8 = new StringConcatenation();
-                                      TypeReference _type_16 = it.getType();
-                                      _builder_8.append(_type_16);
+                                      TypeReference _type_12 = it.getType();
+                                      _builder_8.append(_type_12);
                                       _builder_8.append(" ");
                                       String _simpleName_16 = it.getSimpleName();
                                       _builder_8.append(_simpleName_16);
                                       _builder_8.append(" = object.get(\"");
                                       String _simpleName_17 = it.getSimpleName();
                                       _builder_8.append(_simpleName_17);
-                                      _builder_8.append("\").getAsInt();");
+                                      _builder_8.append("\").getAsFloat();");
                                       _xifexpression_8 = _builder_8.toString();
                                     } else {
                                       String _xifexpression_9 = null;
-                                      TypeReference _type_17 = it.getType();
-                                      TypeReference _newTypeReference_8 = context.newTypeReference(Long.class);
-                                      boolean _equals_8 = Objects.equal(_type_17, _newTypeReference_8);
-                                      if (_equals_8) {
+                                      if ((Objects.equal(it.getType(), context.newTypeReference(Integer.class)) || Objects.equal(it.getType(), context.newTypeReference(int.class)))) {
                                         StringConcatenation _builder_9 = new StringConcatenation();
-                                        TypeReference _type_18 = it.getType();
-                                        _builder_9.append(_type_18);
+                                        TypeReference _type_13 = it.getType();
+                                        _builder_9.append(_type_13);
                                         _builder_9.append(" ");
                                         String _simpleName_18 = it.getSimpleName();
                                         _builder_9.append(_simpleName_18);
                                         _builder_9.append(" = object.get(\"");
                                         String _simpleName_19 = it.getSimpleName();
                                         _builder_9.append(_simpleName_19);
-                                        _builder_9.append("\").getAsLong();");
+                                        _builder_9.append("\").getAsInt();");
                                         _xifexpression_9 = _builder_9.toString();
                                       } else {
                                         String _xifexpression_10 = null;
-                                        TypeReference _type_19 = it.getType();
-                                        TypeReference _newTypeReference_9 = context.newTypeReference(Number.class);
-                                        boolean _equals_9 = Objects.equal(_type_19, _newTypeReference_9);
-                                        if (_equals_9) {
+                                        if ((Objects.equal(it.getType(), context.newTypeReference(Long.class)) || Objects.equal(it.getType(), context.newTypeReference(long.class)))) {
                                           StringConcatenation _builder_10 = new StringConcatenation();
-                                          TypeReference _type_20 = it.getType();
-                                          _builder_10.append(_type_20);
+                                          TypeReference _type_14 = it.getType();
+                                          _builder_10.append(_type_14);
                                           _builder_10.append(" ");
                                           String _simpleName_20 = it.getSimpleName();
                                           _builder_10.append(_simpleName_20);
                                           _builder_10.append(" = object.get(\"");
                                           String _simpleName_21 = it.getSimpleName();
                                           _builder_10.append(_simpleName_21);
-                                          _builder_10.append("\").getAsNumber();");
+                                          _builder_10.append("\").getAsLong();");
                                           _xifexpression_10 = _builder_10.toString();
                                         } else {
                                           String _xifexpression_11 = null;
-                                          TypeReference _type_21 = it.getType();
-                                          TypeReference _newTypeReference_10 = context.newTypeReference(Short.class);
-                                          boolean _equals_10 = Objects.equal(_type_21, _newTypeReference_10);
-                                          if (_equals_10) {
+                                          if ((Objects.equal(it.getType(), context.newTypeReference(Short.class)) || Objects.equal(it.getType(), context.newTypeReference(short.class)))) {
                                             StringConcatenation _builder_11 = new StringConcatenation();
-                                            TypeReference _type_22 = it.getType();
-                                            _builder_11.append(_type_22);
+                                            TypeReference _type_15 = it.getType();
+                                            _builder_11.append(_type_15);
                                             _builder_11.append(" ");
                                             String _simpleName_22 = it.getSimpleName();
                                             _builder_11.append(_simpleName_22);
@@ -263,8 +242,8 @@ public @interface GSonDTO {
                                             _xifexpression_11 = _builder_11.toString();
                                           } else {
                                             StringConcatenation _builder_12 = new StringConcatenation();
-                                            TypeReference _type_23 = it.getType();
-                                            _builder_12.append(_type_23);
+                                            TypeReference _type_16 = it.getType();
+                                            _builder_12.append(_type_16);
                                             _builder_12.append(" ");
                                             String _simpleName_24 = it.getSimpleName();
                                             _builder_12.append(_simpleName_24);
@@ -272,8 +251,8 @@ public @interface GSonDTO {
                                             String _simpleName_25 = it.getSimpleName();
                                             _builder_12.append(_simpleName_25);
                                             _builder_12.append("\"), ");
-                                            TypeReference _type_24 = it.getType();
-                                            _builder_12.append(_type_24);
+                                            TypeReference _type_17 = it.getType();
+                                            _builder_12.append(_type_17);
                                             _builder_12.append(".class);");
                                             _xifexpression_11 = _builder_12.toString();
                                           }

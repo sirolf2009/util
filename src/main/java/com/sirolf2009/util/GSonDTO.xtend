@@ -47,23 +47,23 @@ annotation GSonDTO {
 							'''«type» «simpleName» = object.get("«simpleName»").getAsBigDecimal();'''
 						} else if(type == newTypeReference(BigInteger)) {
 							'''«type» «simpleName» = object.get("«simpleName»").getAsBigInteger();'''
-						} else if(type == newTypeReference(Boolean)) {
+						} else if(type == newTypeReference(Number)) {
+							'''«type» «simpleName» = object.get("«simpleName»").getAsNumber();'''
+						} else if(type == newTypeReference(Boolean) || type == newTypeReference(boolean)) {
 							'''«type» «simpleName» = object.get("«simpleName»").getAsBoolean();'''
-						} else if(type == newTypeReference(Byte)) {
+						} else if(type == newTypeReference(Byte) || type == newTypeReference(byte)) {
 							'''«type» «simpleName» = object.get("«simpleName»").getAsByte();'''
-						} else if(type == newTypeReference(Character)) {
+						} else if(type == newTypeReference(Character) || type == newTypeReference(char)) {
 							'''«type» «simpleName» = object.get("«simpleName»").getAsCharacter();'''
-						} else if(type == newTypeReference(Double)) {
+						} else if(type == newTypeReference(Double) || type == newTypeReference(double)) {
 							'''«type» «simpleName» = object.get("«simpleName»").getAsDouble();'''
-						} else if(type == newTypeReference(Float)) {
+						} else if(type == newTypeReference(Float) || type == newTypeReference(float)) {
 							'''«type» «simpleName» = object.get("«simpleName»").getAsFloat();'''
 						} else if(type == newTypeReference(Integer) || type == newTypeReference(int)) {
 							'''«type» «simpleName» = object.get("«simpleName»").getAsInt();'''
-						} else if(type == newTypeReference(Long)) {
+						} else if(type == newTypeReference(Long) || type == newTypeReference(long)) {
 							'''«type» «simpleName» = object.get("«simpleName»").getAsLong();'''
-						} else if(type == newTypeReference(Number)) {
-							'''«type» «simpleName» = object.get("«simpleName»").getAsNumber();'''
-						} else if(type == newTypeReference(Short)) {
+						} else if(type == newTypeReference(Short) || type == newTypeReference(short)) {
 							'''«type» «simpleName» = object.get("«simpleName»").getAsShort();'''
 						} else {
 							'''«type» «simpleName» = context.deserialize(object.get("«simpleName»"), «type».class);'''
