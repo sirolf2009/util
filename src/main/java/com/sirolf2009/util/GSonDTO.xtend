@@ -6,14 +6,15 @@ import com.google.gson.JsonElement
 import com.google.gson.JsonObject
 import com.google.gson.JsonParseException
 import java.lang.reflect.Type
+import java.math.BigDecimal
+import java.math.BigInteger
+import java.util.List
 import org.eclipse.xtend.lib.macro.AbstractClassProcessor
 import org.eclipse.xtend.lib.macro.Active
 import org.eclipse.xtend.lib.macro.RegisterGlobalsContext
 import org.eclipse.xtend.lib.macro.TransformationContext
 import org.eclipse.xtend.lib.macro.declaration.ClassDeclaration
 import org.eclipse.xtend.lib.macro.declaration.MutableClassDeclaration
-import java.math.BigDecimal
-import java.math.BigInteger
 
 @Active(GSonDTOProcessor)
 annotation GSonDTO {
@@ -40,35 +41,38 @@ annotation GSonDTO {
 					exceptions = #[newTypeReference(JsonParseException)]
 					body = '''
 					«newTypeReference(JsonObject)» object = json.getAsJsonObject();
-					«constructor.parameters.map[
+					«FOR type : constructor.parameters»
+						«
 						if(type == newTypeReference(String)) {
-							'''«type» «simpleName» = object.get("«simpleName»").getAsString();'''
+							'''«type.type.type.qualifiedName» «type.simpleName» = object.get("«type.simpleName»").getAsString();'''
 						} else if(type == newTypeReference(BigDecimal)) {
-							'''«type» «simpleName» = object.get("«simpleName»").getAsBigDecimal();'''
+							'''«type.type.type.qualifiedName» «type.simpleName» = object.get("«type.simpleName»").getAsBigDecimal();'''
 						} else if(type == newTypeReference(BigInteger)) {
-							'''«type» «simpleName» = object.get("«simpleName»").getAsBigInteger();'''
+							'''«type.type.type.qualifiedName» «type.simpleName» = object.get("«type.simpleName»").getAsBigInteger();'''
 						} else if(type == newTypeReference(Number)) {
-							'''«type» «simpleName» = object.get("«simpleName»").getAsNumber();'''
+							'''«type.type.type.qualifiedName» «type.simpleName» = object.get("«type.simpleName»").getAsNumber();'''
 						} else if(type == newTypeReference(Boolean) || type == newTypeReference(boolean)) {
-							'''«type» «simpleName» = object.get("«simpleName»").getAsBoolean();'''
+							'''«type.type.type.qualifiedName» «type.simpleName» = object.get("«type.simpleName»").getAsBoolean();'''
 						} else if(type == newTypeReference(Byte) || type == newTypeReference(byte)) {
-							'''«type» «simpleName» = object.get("«simpleName»").getAsByte();'''
+							'''«type.type.type.qualifiedName» «type.simpleName» = object.get("«type.simpleName»").getAsByte();'''
 						} else if(type == newTypeReference(Character) || type == newTypeReference(char)) {
-							'''«type» «simpleName» = object.get("«simpleName»").getAsCharacter();'''
+							'''«type.type.type.qualifiedName» «type.simpleName» = object.get("«type.simpleName»").getAsCharacter();'''
 						} else if(type == newTypeReference(Double) || type == newTypeReference(double)) {
-							'''«type» «simpleName» = object.get("«simpleName»").getAsDouble();'''
+							'''«type.type.type.qualifiedName» «type.simpleName» = object.get("«type.simpleName»").getAsDouble();'''
 						} else if(type == newTypeReference(Float) || type == newTypeReference(float)) {
-							'''«type» «simpleName» = object.get("«simpleName»").getAsFloat();'''
+							'''«type.type.type.qualifiedName» «type.simpleName» = object.get("«type.simpleName»").getAsFloat();'''
 						} else if(type == newTypeReference(Integer) || type == newTypeReference(int)) {
-							'''«type» «simpleName» = object.get("«simpleName»").getAsInt();'''
+							'''«type.type.type.qualifiedName» «type.simpleName» = object.get("«type.simpleName»").getAsInt();'''
 						} else if(type == newTypeReference(Long) || type == newTypeReference(long)) {
-							'''«type» «simpleName» = object.get("«simpleName»").getAsLong();'''
+							'''«type.type.type.qualifiedName» «type.simpleName» = object.get("«type.simpleName»").getAsLong();'''
 						} else if(type == newTypeReference(Short) || type == newTypeReference(short)) {
-							'''«type» «simpleName» = object.get("«simpleName»").getAsShort();'''
+							'''«type.type.type.qualifiedName» «type.simpleName» = object.get("«type.simpleName»").getAsShort();'''
+						} else if(type.type.isAssignableFrom(newTypeReference(List))) {
+							'''«type.type.type.qualifiedName» «type.simpleName» = context.deserialize(object.get("«type.simpleName»"), new com.google.gson.reflect.TypeToken<«type.type.type.qualifiedName»<«type.type.actualTypeArguments.get(0).type.qualifiedName»>>(){}.getType());'''
 						} else {
-							'''«type» «simpleName» = context.deserialize(object.get("«simpleName»"), «type».class);'''
-						}
-					].join("\n")»
+							'''«type.type.type.qualifiedName» «type.simpleName» = context.deserialize(object.get("«type.simpleName»"), «type.type.type.qualifiedName».class);'''
+						}»
+					«ENDFOR»
 					return new «annotatedClass»(«constructor.parameters.map[simpleName].join(", ")»);'''
 				]
 			}
