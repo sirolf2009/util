@@ -15,7 +15,7 @@ class StringUtil {
 			val aLinePadded = if(aLine.length() < sizeA) aLine + padding(sizeA - aLine.length()) else aLine
 			val bLine = if(it < bLines.size()) bLines.get(it) else ""
 			val bLinePadded = if(bLine.length() < sizeB) bLine + padding(sizeB - bLine.length()) else bLine
-			return aLinePadded + bLinePadded;
+			return aLinePadded + bLinePadded
 		].join("\n")
 	}
 
