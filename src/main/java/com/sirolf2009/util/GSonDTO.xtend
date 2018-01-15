@@ -34,7 +34,6 @@ annotation GSonDTO {
 				serializer.implementedInterfaces = #[newTypeReference(JsonDeserializer, annotatedClass.newSelfTypeReference)]
 				serializer.addMethod("deserialize") [
 					returnType = annotatedClass.newSelfTypeReference
-					// JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException
 					addParameter("json", newTypeReference(JsonElement))
 					addParameter("typeOfT", newTypeReference(Type))
 					addParameter("context", newTypeReference(JsonDeserializationContext))
