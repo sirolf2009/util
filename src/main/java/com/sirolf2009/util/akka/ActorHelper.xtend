@@ -13,7 +13,7 @@ class ActorHelper {
 	
 	new(AbstractActor me) {
 		this.me = me
-		this.log = Logging.getLogger(me.getContext().getSystem(), me)
+		this.log = Logging.getLogger(me)
 	}
 
 	def =>(ActorRef actor, Object response) {
