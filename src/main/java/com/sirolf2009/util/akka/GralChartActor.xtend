@@ -15,7 +15,7 @@ import javax.swing.JFrame
 import org.eclipse.xtend.lib.annotations.Data
 import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
 
-@FinalFieldsConstructor class XChartActor extends AbstractActor {
+@FinalFieldsConstructor class GralChartActor extends AbstractActor {
 
 	public static val Consumer<LineSetup> line = [
 		plot.setLineRenderers(data, new DiscreteLineRenderer2D())
