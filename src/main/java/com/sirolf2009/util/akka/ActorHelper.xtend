@@ -16,6 +16,10 @@ class ActorHelper {
 		this.log = Logging.getLogger(me)
 	}
 
+	def tell(ActorRef actor, Object response) {
+		actor.tell(response, me.self())
+	}
+
 	def =>(ActorRef actor, Object response) {
 		actor.tell(response, me.self())
 	}
@@ -39,6 +43,10 @@ class ActorHelper {
 	
 	def error(Object msg) {
 		log.error(msg+"")
+	}
+	
+	def error(Object msg, Throwable e) {
+		log.error(e, msg+"")
 	}
 	
 	def warning(Object msg) {

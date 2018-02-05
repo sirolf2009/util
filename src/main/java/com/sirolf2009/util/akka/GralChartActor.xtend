@@ -20,30 +20,9 @@ import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
 	public static val Consumer<LineSetup> line = [
 		plot.setLineRenderers(data, new DiscreteLineRenderer2D())
 	]
-	public static val Consumer<LineSetup> red = [
-		val color = new Color(150, 40, 40)
-		plot.getPointRenderers(data).get(0).color = color
-		try {
-			plot.getLineRenderers(data).get(0).setColor(color)
-		} catch(Exception e) {
-		}
-	]
-	public static val Consumer<LineSetup> green = [
-		val color = new Color(40, 150, 40)
-		plot.getPointRenderers(data).get(0).color = color
-		try {
-			plot.getLineRenderers(data).get(0).setColor(color)
-		} catch(Exception e) {
-		}
-	]
-	public static val Consumer<LineSetup> blue = [
-		val color = new Color(40, 40, 150)
-		plot.getPointRenderers(data).get(0).color = color
-		try {
-			plot.getLineRenderers(data).get(0).setColor(color)
-		} catch(Exception e) {
-		}
-	]
+	public static val Consumer<LineSetup> red = color(150, 40, 40)
+	public static val Consumer<LineSetup> green = color(40, 150, 40)
+	public static val Consumer<LineSetup> blue = color(40, 40, 150)
 	public static val Consumer<LineSetup> labeled = [
 		plot.getPointRenderers(data).get(0).valueVisible = true
 	]
@@ -137,6 +116,17 @@ import org.eclipse.xtend.lib.annotations.FinalFieldsConstructor
 
 	def synchronized render() {
 		panel.repaint()
+	}
+
+	def static Consumer<LineSetup> color(int r, int g, int b) {
+		return [
+			val color = new Color(r, g, b)
+			plot.getPointRenderers(data).get(0).color = color
+			try {
+				plot.getLineRenderers(data).get(0).setColor(color)
+			} catch(Exception e) {
+			}
+		]
 	}
 
 	@Data public static class ChartPoint {
