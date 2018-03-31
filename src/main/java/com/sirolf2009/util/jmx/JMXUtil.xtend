@@ -11,8 +11,11 @@ class JMXUtil {
 	def static void startJMX(int port) throws IOException {
 		LocateRegistry.createRegistry(port)
 		val mbs = ManagementFactory.getPlatformMBeanServer()
-		val url = new JMXServiceURL("service:jmx:rmi://localhost/jndi/rmi://localhost:"+port+"/jmxrmi")
-		JMXConnectorServerFactory.newJMXConnectorServer(url, null, mbs).start()
+		JMXConnectorServerFactory.newJMXConnectorServer(getURLForPort(port), null, mbs).start()
+	}
+	
+	def static JMXServiceURL getURLForPort(int port) {
+		return new JMXServiceURL('''service:jmx:rmi://localhost/jndi/rmi://localhost:«port»/jmxrmi''')
 	}
 	
 }
