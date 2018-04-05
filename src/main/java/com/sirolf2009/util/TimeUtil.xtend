@@ -18,6 +18,10 @@ class TimeUtil {
 	public static val UTC = TimeZone.getTimeZone("UTC")
 	public static TimeZone timezone = amsterdam
 
+	def static String formatForUrl(Date date) {
+		return format(date).replace("+", "%2B").replace("-", "%2D")
+	}
+
 	def static String format(Date date) {
 		return getIsoParser().format(date)
 	}
