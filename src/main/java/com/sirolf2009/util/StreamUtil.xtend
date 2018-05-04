@@ -82,6 +82,9 @@ class StreamUtil {
 	def static <T> Stream<Pair<T, Long>> zipWithIndex(Stream<T> stream) {
 		return stream(new ZipWithIndex(stream.iterator()))
 	}
+	def static <T> Stream<Pair<T, Long>> zipWithIndex(Iterable<T> stream) {
+		return stream(new ZipWithIndex(stream.iterator()))
+	}
 	
 	@FinalFieldsConstructor static class ZipWithIndex<T> implements Iterator<Pair<T, Long>> {
 		val Iterator<T> itr
