@@ -1,6 +1,19 @@
 package com.sirolf2009.util
 
+import java.util.concurrent.atomic.AtomicReference
+
 class StringUtil {
+	
+	def static String combineMultiline(String... strings) {
+		if(strings.size() == 0) {
+			return ""
+		} else if(strings.size() == 1) {
+			return strings.get(0)
+		}
+		val combined = new AtomicReference<String>(strings.get(0))
+		strings.stream().skip(1).forEach[combined.set(combineMultiline(combined.get(), it))]
+		return combined.get()
+	}
 
 	def static String combineMultiline(String a, String b) {
 		val aLines = a.split("\n")
