@@ -10,6 +10,9 @@ import java.time.ZoneId
 import java.util.Calendar
 import java.time.temporal.ChronoUnit
 import java.util.ArrayList
+import java.time.LocalDateTime
+import java.time.ZonedDateTime
+import java.time.Instant
 
 class TimeUtil {
 
@@ -44,8 +47,20 @@ class TimeUtil {
 		]
 	}
 
-	def static Date toDate(LocalDate date) {
-		return Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant())
+	def static Date toDate(LocalDateTime date) {
+		return toDate(date, amsterdam)
+	}
+
+	def static Date toDate(LocalDateTime date, TimeZone zone) {
+		return toDate(date.atZone(zone.toZoneId()))
+	}
+
+	def static Date toDate(ZonedDateTime date) {
+		return toDate(date.toInstant())
+	}
+
+	def static Date toDate(Instant instant) {
+		return Date.from(instant)
 	}
 
 	def static Date asAmsterdamDay(Date date) {

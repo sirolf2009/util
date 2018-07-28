@@ -15,6 +15,15 @@ import org.eclipse.xtend.lib.macro.RegisterGlobalsContext
 import org.eclipse.xtend.lib.macro.TransformationContext
 import org.eclipse.xtend.lib.macro.declaration.ClassDeclaration
 import org.eclipse.xtend.lib.macro.declaration.MutableClassDeclaration
+import java.io.File
+import java.io.PrintWriter
+import com.google.gson.Gson
+import java.io.FileNotFoundException
+import com.google.gson.GsonBuilder
+import java.nio.file.Files
+import java.nio.file.Paths
+import java.nio.charset.Charset
+import java.io.IOException
 
 @Active(GSonDTOProcessor)
 annotation GSonDTO {
@@ -73,6 +82,27 @@ annotation GSonDTO {
 						}»
 					«ENDFOR»
 					return new «annotatedClass»(«constructor.parameters.map[simpleName].join(", ")»);'''
+				]
+				serializer.addMethod("write")[
+					static = true
+					exceptions = #[newTypeReference(FileNotFoundException)]
+					addParameter("dto", newTypeReference(annotatedClass))
+					addParameter("file", newTypeReference(File))
+					body = '''
+					try(«newTypeReference(PrintWriter)» out = new «newTypeReference(PrintWriter)»(file.getAbsolutePath())) {
+						out.println(new «newTypeReference(Gson)»().toJson(dto));
+					}
+					'''
+				]
+				serializer.addMethod("read")[
+					static = true
+					exceptions = #[newTypeReference(IOException)]
+					addParameter("file", newTypeReference(File))
+					returnType = newTypeReference(annotatedClass)
+					body = '''
+					«newTypeReference(Gson)» gson = new «newTypeReference(GsonBuilder)»().registerTypeAdapter(«newTypeReference(annotatedClass)».class, new «newTypeReference(serializer)»()).create();
+					return gson.fromJson(new String(«newTypeReference(Files)».readAllBytes(«newTypeReference(Paths)».get(file.getAbsolutePath())), «newTypeReference(Charset)».defaultCharset()), «newTypeReference(annotatedClass)».class);
+					'''
 				]
 			}
 		}

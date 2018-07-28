@@ -20,16 +20,10 @@ class StreamUtil {
 		return Stream.of(streams).flatMap[it]
 	}
 	
-	/**
-	 * Effectively as the {@link java.util.stream.Stream.of} function, this just reads nicer
-	 */
 	def static <T> Stream<T> stream(T t) {
 		return Stream.of(t)
 	}
 	
-	/**
-	 * Effectively as the {@link java.util.stream.Stream.of} function, this just reads nicer
-	 */
 	@SafeVarargs
 	def static <T> Stream<T> stream(T... t) {
 		return Stream.of(t);
