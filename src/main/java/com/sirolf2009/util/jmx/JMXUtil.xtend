@@ -5,8 +5,13 @@ import java.lang.management.ManagementFactory
 import java.rmi.registry.LocateRegistry
 import javax.management.remote.JMXConnectorServerFactory
 import javax.management.remote.JMXServiceURL
+import javax.management.ObjectName
 
 class JMXUtil {
+	
+	def static registerObject(Object object, String name) {
+		ManagementFactory.getPlatformMBeanServer().registerMBean(object, new ObjectName(name))
+	}
 	
 	def static void startJMX(int port) throws IOException {
 		LocateRegistry.createRegistry(port)
