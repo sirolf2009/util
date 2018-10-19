@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sirolf2009</groupId>
 	<artifactId>util</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 
 	<name>util</name>
 	<description>A collection of my common utilities</description>
@@ -108,13 +108,6 @@
 					<outputDirectory>${project.build.directory}/xtend-gen/main</outputDirectory>
 					<testOutputDirectory>${project.build.directory}/xtend-gen/test</testOutputDirectory>
 				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.eclipse.platform</groupId>
-						<artifactId>org.eclipse.equinox.common</artifactId>
-						<version>3.10.0</version>
-					</dependency>
-				</dependencies>
 			</plugin>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
