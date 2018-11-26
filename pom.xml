@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.sirolf2009</groupId>
 	<artifactId>util</artifactId>
-	<version>0.0.1</version>
+	<version>0.0.2</version>
 
 	<name>util</name>
 	<description>A collection of my common utilities</description>
@@ -84,6 +84,24 @@
 			<groupId>com.esotericsoftware</groupId>
 			<artifactId>kryo</artifactId>
 			<version>4.0.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.reactivex.rxjava2</groupId>
+			<artifactId>rxjava</artifactId>
+			<version>2.2.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.reactivex.rxjava2</groupId>
+			<artifactId>rxjavafx</artifactId>
+			<version>2.2.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.vavr</groupId>
+			<artifactId>vavr</artifactId>
+			<version>0.9.2</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

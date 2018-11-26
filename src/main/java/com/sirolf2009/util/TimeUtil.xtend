@@ -1,18 +1,18 @@
 package com.sirolf2009.util
 
-import java.util.Date
-import java.util.TimeZone
-import java.util.List
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.time.Instant
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.ZoneId
-import java.util.Calendar
+import java.time.ZonedDateTime
 import java.time.temporal.ChronoUnit
 import java.util.ArrayList
-import java.time.LocalDateTime
-import java.time.ZonedDateTime
-import java.time.Instant
+import java.util.Calendar
+import java.util.Date
+import java.util.List
+import java.util.TimeZone
 
 class TimeUtil {
 
@@ -163,11 +163,79 @@ class TimeUtil {
 		return cal.getTime()
 	}
 
+	def static int get(int field) {
+		return getCalendar().get(field)
+	}
+
+	def static int get(TimeZone zone, int field) {
+		return getCalendar(zone).get(field)
+	}
+
+	def static int get(Date date, int field) {
+		return getCalendar(date).get(field)
+	}
+
+	def static int get(Date date, TimeZone zone, int field) {
+		return getCalendar(date, zone).get(field)
+	}
+
+	def static Calendar getCalendar(Date date) {
+		return getCalendar(date, timezone)
+	}
+
+	def static Calendar getCalendar(Date date, TimeZone zone) {
+		val cal = getCalendar(zone)
+		cal.setTime(date)
+		return cal
+	}
+
 	def static Calendar getCalendar() {
 		return getCalendar(timezone)
 	}
 
 	def static Calendar getCalendar(TimeZone zone) {
 		return Calendar.getInstance(zone)
+	}
+
+	def static Date addMillis(Date startTime, int n) {
+		val Calendar cal = TimeUtil.getCalendar(startTime)
+		cal.add(Calendar.MILLISECOND, n)
+		return cal.getTime()
+	}
+
+	def static Date addSeconds(Date startTime, int n) {
+		val Calendar cal = TimeUtil.getCalendar(startTime)
+		cal.add(Calendar.SECOND, n)
+		return cal.getTime()
+	}
+
+	def static Date addMinutes(Date startTime, int n) {
+		val Calendar cal = TimeUtil.getCalendar(startTime)
+		cal.add(Calendar.MINUTE, n)
+		return cal.getTime()
+	}
+
+	def static Date addHours(Date startTime, int n) {
+		val Calendar cal = TimeUtil.getCalendar(startTime)
+		cal.add(Calendar.HOUR_OF_DAY, n)
+		return cal.getTime()
+	}
+
+	def static Date addDays(Date startTime, int n) {
+		val Calendar cal = TimeUtil.getCalendar(startTime)
+		cal.add(Calendar.DATE, n)
+		return cal.getTime()
+	}
+
+	def static Date addMonths(Date startTime, int n) {
+		val Calendar cal = TimeUtil.getCalendar(startTime)
+		cal.add(Calendar.MONTH, n)
+		return cal.getTime()
+	}
+
+	def static Date addYears(Date startTime, int n) {
+		val Calendar cal = TimeUtil.getCalendar(startTime)
+		cal.add(Calendar.YEAR, n)
+		return cal.getTime()
 	}
 }

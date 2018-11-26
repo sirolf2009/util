@@ -1,5 +1,6 @@
 package com.sirolf2009.util
 
+import java.util.Arrays
 import java.util.concurrent.atomic.AtomicReference
 
 class StringUtil {
