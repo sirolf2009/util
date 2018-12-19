@@ -8,6 +8,7 @@ import io.reactivex.schedulers.Schedulers
 import java.util.Optional
 import java.util.function.Function
 import io.vavr.control.Try
+import io.reactivex.parallel.ParallelFlowable
 
 /**
  * import static extension com.sirolf2009.util.RxXtend.*
@@ -34,6 +35,10 @@ class RxXtend {
 		source.filterSuccess().map[get()]
 	}
 	
+	def static <T> ParallelFlowable<T> unpackSuccess(ParallelFlowable<Try<T>> source) {
+		source.filterSuccess().map[get()]
+	}
+	
 	def static <T> Maybe<T> unpackSuccess(Single<Try<T>> source) {
 		source.filterSuccess().map[get()]
 	}
@@ -47,6 +52,10 @@ class RxXtend {
 	}
 	
 	def static <T> Flowable<Try<T>> filterSuccess(Flowable<Try<T>> source) {
+		source.filter[isSuccess()]
+	}
+	
+	def static <T> ParallelFlowable<Try<T>> filterSuccess(ParallelFlowable<Try<T>> source) {
 		source.filter[isSuccess()]
 	}
 	
@@ -66,6 +75,10 @@ class RxXtend {
 		source.filterEmpty().map[get()]
 	}
 	
+	def static <T> ParallelFlowable<T> unpack(ParallelFlowable<Optional<T>> source) {
+		source.filterEmpty().map[get()]
+	}
+	
 	def static <T> Maybe<T> unpack(Single<Optional<T>> source) {
 		source.filterEmpty().map[get()]
 	}
@@ -79,6 +92,10 @@ class RxXtend {
 	}
 	
 	def static <T> Flowable<Optional<T>> filterEmpty(Flowable<Optional<T>> source) {
+		source.filter[isPresent()]
+	}
+	
+	def static <T> ParallelFlowable<Optional<T>> filterEmpty(ParallelFlowable<Optional<T>> source) {
 		source.filter[isPresent()]
 	}
 	

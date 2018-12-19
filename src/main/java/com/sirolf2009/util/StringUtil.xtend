@@ -1,9 +1,14 @@
 package com.sirolf2009.util
 
-import java.util.Arrays
 import java.util.concurrent.atomic.AtomicReference
 
 class StringUtil {
+	
+	def static replaceLast(String string, String regex, String replacement) {
+		val stringBuilder = new StringBuilder(string)
+		stringBuilder.replace(string.lastIndexOf(regex), string.lastIndexOf(regex)+regex.length(), replacement)
+		return stringBuilder.toString()
+	}
 	
 	def static String combineMultiline(String... strings) {
 		if(strings.size() == 0) {

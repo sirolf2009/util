@@ -27,8 +27,4 @@ class RxXtendFx {
 		source.observeOn(JavaFxScheduler.platform())
 	}
 	
-	def static <T> Flowable<T> toFlowable(Iterable<T> source) {
-		Flowable.fromIterable(source)
-	}
-	
 }
