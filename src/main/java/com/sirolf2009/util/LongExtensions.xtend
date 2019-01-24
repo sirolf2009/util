@@ -3,7 +3,7 @@ package com.sirolf2009.util
 class LongExtensions {
 
 	def static String humanReadableByteCount(long bytes) {
-		return humanReadableByteCount(bytes, true)
+		return humanReadableByteCount(bytes, false)
 	}
 
 	/**
