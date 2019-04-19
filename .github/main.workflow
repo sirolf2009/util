@@ -4,6 +4,6 @@ workflow "Test Workflow" {
 }
 
 action "GitHub Action for Maven" {
-  uses = "LucaFeger/action-maven-cli@aed8a1fd96b459b9a0be4b42a5863843cc70724e"
+  uses = "sirolf2009/action-maven-cli@master"
   args = "clean deploy -P release"
 }
