@@ -4,6 +4,7 @@ workflow "Test Workflow" {
 }
 
 action "GitHub Action for Maven" {
-  uses = "sirolf2009/action-maven-cli@master"
-  args = "clean deploy -P release"
+  uses = "docker://sirolf2009/docker-oraclejdk8-mvn-gpg:latest"
+  args = "clean deploy -P release -Dgpg.passphrase=$GPGPASSWORD"
+  secrets = ["GPGPASSWORD"]
 }
