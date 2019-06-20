@@ -188,6 +188,32 @@ class TimeUtil {
 		cal.setTime(date)
 		return cal
 	}
+	
+	/** January = 0 */
+	def static Calendar getCalendar(int year, int month, int day) {
+		return getCalendar(year, month, day, timezone)
+	}
+	
+	/** January = 0 */
+	def static Calendar getCalendar(int year, int month, int day, TimeZone zone) {
+		val cal = getCalendar(zone)
+		cal.clear()
+		cal.set(year, month, day)
+		return cal
+	}
+	
+	/** January = 0 */
+	def static Calendar getCalendar(int year, int month, int day, int hourOfDay, int minute) {
+		return getCalendar(year, month, day, hourOfDay, minute, timezone)
+	}
+	
+	/** January = 0 */
+	def static Calendar getCalendar(int year, int month, int day, int hourOfDay, int minute, TimeZone zone) {
+		val cal = getCalendar(zone)
+		cal.clear()
+		cal.set(year, month, day, hourOfDay, minute)
+		return cal
+	}
 
 	def static Calendar getCalendar() {
 		return getCalendar(timezone)
