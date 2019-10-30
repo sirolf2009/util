@@ -22,12 +22,14 @@ class SpanUtil {
 
 	def static <R, E extends Exception> R span(Tracer tracer, String name, Function_WithExceptions<Span, R, E> spanFunction, BiConsumer<Span, Throwable> errorConsumer) throws E {
 		var Span span = tracer.buildSpan(name).asChildOf(tracer.activeSpan()).start()
-		try (var Scope scope=tracer.activateSpan(span)) {
+		var Scope scope=tracer.activateSpan(span)
+		try {
 			return spanFunction.apply(span)
 		} catch(Exception e) {
 			errorConsumer.accept(span, e)
 			throw e
 		} finally {
+			scope.close()
 			span.finish()
 		}
 	}
@@ -41,11 +43,13 @@ class SpanUtil {
 
 	def static void span(Tracer tracer, String name, Consumer<Span> scopeConsumer, BiConsumer<Span, Throwable> errorConsumer) {
 		var Span span = tracer.buildSpan(name).asChildOf(tracer.activeSpan()).start()
-		try (var Scope scope=tracer.activateSpan(span)) {
+		var Scope scope=tracer.activateSpan(span)
+		try {
 			scopeConsumer.accept(span)
 		} catch(Exception e) {
 			errorConsumer.accept(span, e)
 		} finally {
+			scope.close()
 			span.finish()
 		}
 	}
