@@ -15,4 +15,22 @@ class SparkUtil {
 		]
 	}
 	
+	def static enableCORS() {
+		Spark.options("/*") [req, res|
+			val accessControlRequestHeaders = req.headers("Access-Control-Request-Headers")
+			if(accessControlRequestHeaders !== null) {
+				res.header("Access-Control-Allow-Headers", accessControlRequestHeaders)
+			}
+			
+			val accessControlMethod = req.headers("Access-Control-Request-Method")
+			if(accessControlMethod !== null) {
+				res.header("Access-Control-Allow-Methods", accessControlMethod)
+			}
+			return "OK"
+		]
+		Spark.before [req,res|
+			res.header("Access-Control-Allow-Origin", "*")
+		]
+	}
+	
 }
